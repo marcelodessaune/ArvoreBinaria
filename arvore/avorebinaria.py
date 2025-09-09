@@ -156,6 +156,22 @@ class BinaryTree:
         if self.is_unbalanced():
             classes.append("Desbalanceada")
         return classes
+        
+    def print_tree(self, node=None, level=0, prefix="Raiz: "):
+        if node is None:
+            node = self.root
+        if node is not None:
+            print(" " * (level * 4) + prefix + str(node.data))
+            if node.left or node.right:
+                if node.left:
+                 self.print_tree(node.left, level + 1, "L--- ")
+                else:
+                    print(" " * ((level + 1) * 4) + "L--- None")
+                if node.right:
+                    self.print_tree(node.right, level + 1, "R--- ")
+                else:
+                    print(" " * ((level + 1) * 4) + "R--- None")
+
 
 if __name__ == "__main__":
     valores = [1, 2, 3, 4, 5, 6, 7]
@@ -168,3 +184,5 @@ if __name__ == "__main__":
     print("Pós-Order:", arvore.postorder(arvore.root))
     print("Level-Order:", arvore.level_order())
     print("Classificação da árvore:", arvore.classify())
+    print("\nÁrvore (deitada):")
+    arvore.print_tree()
